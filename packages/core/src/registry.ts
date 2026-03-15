@@ -39,26 +39,12 @@ export const toolRegistry: ToolMeta[] = [
     keywords: ['hash', 'md5', 'sha1', 'sha256', 'sha512', 'checksum', 'digest'],
     category: 'generators',
   },
-  // Batch 2 — placeholders (future tools)
+  // Batch 2 — formatters
   {
-    name: 'JWT Decoder',
-    slug: 'jwt-decoder',
-    description: 'Decode and inspect JSON Web Tokens without verification.',
-    keywords: ['jwt', 'json web token', 'decode', 'auth', 'token'],
-    category: 'encoders',
-  },
-  {
-    name: 'Color Converter',
-    slug: 'color-converter',
-    description: 'Convert colors between HEX, RGB, HSL, and other formats.',
-    keywords: ['color', 'hex', 'rgb', 'hsl', 'convert', 'css'],
-    category: 'formatters',
-  },
-  {
-    name: 'Regex Tester',
-    slug: 'regex-tester',
-    description: 'Test and debug regular expressions with live match highlighting.',
-    keywords: ['regex', 'regexp', 'regular expression', 'test', 'match', 'pattern'],
+    name: 'JSON to TypeScript',
+    slug: 'json-to-typescript',
+    description: 'Generate TypeScript interface or type definitions from JSON input.',
+    keywords: ['json', 'typescript', 'interface', 'type', 'convert', 'codegen'],
     category: 'formatters',
   },
   {
@@ -68,12 +54,28 @@ export const toolRegistry: ToolMeta[] = [
     keywords: ['timestamp', 'unix', 'epoch', 'date', 'time', 'convert'],
     category: 'formatters',
   },
+  // Batch 2 — generators
   {
-    name: 'Password Generator',
-    slug: 'password-generator',
-    description: 'Generate secure random passwords with configurable length and character sets.',
-    keywords: ['password', 'generate', 'random', 'secure', 'strong'],
+    name: 'Cron Expression Generator',
+    slug: 'cron-generator',
+    description: 'Parse and describe cron expressions, and preview the next scheduled runs.',
+    keywords: ['cron', 'schedule', 'expression', 'job', 'time', 'crontab'],
     category: 'generators',
+  },
+  // Batch 2 — encoders
+  {
+    name: 'YAML ↔ JSON Converter',
+    slug: 'yaml-json',
+    description: 'Convert between YAML and JSON formats with pretty-printed output.',
+    keywords: ['yaml', 'json', 'convert', 'format', 'transform'],
+    category: 'encoders',
+  },
+  {
+    name: 'Image to Base64',
+    slug: 'image-to-base64',
+    description: 'Convert image files to Base64 data URIs for use in HTML, CSS, or code.',
+    keywords: ['image', 'base64', 'data uri', 'encode', 'embed', 'css', 'html'],
+    category: 'encoders',
   },
 ]
 
