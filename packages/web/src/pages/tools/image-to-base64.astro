@@ -8,4 +8,69 @@ const meta = getToolMeta('image-to-base64')!
 
 <ToolPage meta={meta}>
   <ImageToBase64Island client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Click <strong>Choose File</strong> or drag an image onto the drop zone to load it. The
+        tool immediately converts the image to a Base64 string and shows both the raw string and
+        a ready-to-use <code>data:</code> URI. Toggle between the two formats with the buttons
+        above the output, then click <strong>Copy</strong> to put the result on your clipboard.
+      </p>
+      <p>
+        Typical use cases include embedding small icons or logos directly in HTML or CSS to
+        eliminate HTTP requests, storing images in JSON payloads for REST APIs that do not accept
+        multipart form data, including image thumbnails in email templates, and encoding
+        images for use in <code>&lt;img src="data:..."&gt;</code> tags inside Markdown or
+        rich text editors that do not support file uploads.
+      </p>
+      <p>
+        Conversion runs in your browser using the Canvas and FileReader APIs. Your image is
+        never uploaded to any server.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Why would I convert an image to Base64?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Base64 encoding lets you embed binary image data directly inside a text-based format
+          such as HTML, CSS, JSON, or XML. This eliminates a separate HTTP request for the image,
+          which can improve performance for small assets like icons. It is also required when
+          sending images through APIs or message queues that only accept text payloads.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Does Base64 encoding increase the file size of an image?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes, by approximately 33%. Base64 encodes every 3 bytes of binary data as 4 ASCII
+          characters, so a 100 KB PNG becomes roughly 133 KB as a Base64 string. For large
+          images this overhead outweighs the HTTP-request savings, which is why Base64 embedding
+          is typically reserved for images smaller than a few kilobytes.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the difference between a Base64 string and a data URI?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          A Base64 string is just the raw encoded data. A data URI wraps it with a MIME type
+          prefix in the format <code>data:&lt;mediatype&gt;;base64,&lt;data&gt;</code>, for
+          example <code>data:image/png;base64,iVBORw0K...</code>. You need the full data URI
+          to use the image as an <code>src</code> attribute or a CSS <code>url()</code> value;
+          the raw string alone is not sufficient.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Which image formats are supported?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Any image format your browser can display is supported, including PNG, JPEG, GIF,
+          WebP, SVG, and AVIF. The MIME type is detected automatically from the file and
+          included in the generated data URI so the browser knows how to interpret the data.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

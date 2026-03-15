@@ -8,4 +8,69 @@ const meta = getToolMeta('cron-generator')!
 
 <ToolPage meta={meta}>
   <CronGeneratorIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Use the visual builder to set the minute, hour, day-of-month, month, and day-of-week
+        fields, and the cron expression is generated in real time. Alternatively, type a cron
+        expression directly into the input field and the tool will explain each field in plain
+        English and show the next five scheduled run times.
+      </p>
+      <p>
+        Cron is used extensively for scheduling recurring tasks: database backups, report
+        generation, cache invalidation, sending scheduled emails, rotating log files, and
+        triggering CI/CD pipelines on a schedule. This tool also supports the non-standard
+        <code>@reboot</code>, <code>@daily</code>, <code>@weekly</code>, and
+        <code>@monthly</code> shorthand strings used by many cron implementations.
+      </p>
+      <p>
+        The expression preview and next-run calculator run entirely in your browser — useful
+        for verifying a schedule before deploying it to production.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What does */5 mean in a cron expression?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          The <code>*/5</code> syntax means "every 5 units." In the minute field,
+          <code>*/5</code> runs the job at minutes 0, 5, 10, 15 … 55 — effectively every 5
+          minutes. In the hour field it would run every 5 hours. The <code>*</code> stands for
+          "every possible value" and dividing by the step selects evenly spaced values.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I schedule a cron job to run every hour?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Use <code>0 * * * *</code> to run at the top of every hour, or the shorthand
+          <code>@hourly</code>. If you want it to run at a specific minute past the hour — for
+          example 15 minutes past — use <code>15 * * * *</code>.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the format of a standard cron expression?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          A standard cron expression has five space-separated fields:
+          <code>minute hour day-of-month month day-of-week</code>. Each field accepts a number,
+          a wildcard (<code>*</code>), a range (<code>1-5</code>), a list
+          (<code>1,3,5</code>), or a step value (<code>*/2</code>). Some systems add a sixth
+          field for seconds at the beginning.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I run a job on weekdays only?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Set the day-of-week field to <code>1-5</code>, where 1 is Monday and 5 is Friday.
+          For example, <code>0 9 * * 1-5</code> runs the job every weekday at 09:00.
+          Note that Sunday can be represented as either 0 or 7 depending on the cron
+          implementation.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

@@ -8,4 +8,65 @@ const meta = getToolMeta('json-formatter')!
 
 <ToolPage meta={meta}>
   <JsonFormatterIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Paste your raw JSON string into the input area and click <strong>Format</strong> to instantly
+        pretty-print it with proper indentation and syntax highlighting. The formatter validates your
+        JSON at the same time, so any syntax errors are flagged immediately with a clear error message
+        pointing to the offending line.
+      </p>
+      <p>
+        Common use cases include debugging API responses, reviewing configuration files such as
+        <code>package.json</code> or <code>tsconfig.json</code>, and cleaning up minified JSON
+        before committing it to version control. You can also use the <strong>Minify</strong> button
+        to compact formatted JSON back to a single line — handy when you need to embed it in an
+        environment variable or HTTP request body.
+      </p>
+      <p>
+        All processing happens entirely in your browser. Nothing is sent to a server, so you can
+        safely paste credentials, API keys, or any other sensitive data without privacy concerns.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Is it safe to paste sensitive JSON data here?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes. This JSON formatter runs entirely client-side using JavaScript in your browser. No
+          data is transmitted to any server, so passwords, tokens, and private configuration values
+          never leave your machine.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the maximum JSON size this tool can handle?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          There is no hard-coded size limit. Performance depends on your device's available memory
+          and the browser's JavaScript engine. In practice, JSON files up to several megabytes format
+          in well under a second on modern hardware.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I validate JSON online without installing anything?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Paste your JSON into this tool and click Format. If the JSON is invalid, the tool displays
+          a parse error with the line and column number so you can locate and fix the problem
+          immediately.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the difference between pretty-print and minified JSON?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Pretty-printed JSON adds newlines and indentation to make the structure readable for
+          humans. Minified JSON removes all unnecessary whitespace to reduce file size, which lowers
+          network transfer time for APIs and reduces storage footprint.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

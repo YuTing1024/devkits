@@ -8,4 +8,69 @@ const meta = getToolMeta('uuid-generator')!
 
 <ToolPage meta={meta}>
   <UuidGeneratorIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Select the UUID version you need from the dropdown — <strong>v4</strong> for a random
+        identifier or <strong>v7</strong> for a time-ordered identifier — then choose how many
+        UUIDs to generate (1 to 100 at a time) and click <strong>Generate</strong>. Each UUID is
+        copied to your clipboard with a single click.
+      </p>
+      <p>
+        UUID v4 is the right choice for most use cases: primary keys in databases, session tokens,
+        correlation IDs in distributed systems, and anywhere you need a globally unique identifier
+        with no coordination between services. UUID v7 is better when you also need IDs to sort
+        chronologically — for example, as database primary keys where index locality and insert
+        performance matter.
+      </p>
+      <p>
+        Generation uses your browser's <code>crypto.randomUUID()</code> API where available,
+        which provides cryptographically strong randomness. No IDs are logged or stored.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the difference between UUID v4 and UUID v7?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          UUID v4 is entirely random (122 random bits), making it suitable for any use case that
+          requires uniqueness without ordering. UUID v7 embeds a Unix timestamp in the most
+          significant bits, so IDs generated later sort after those generated earlier. This makes
+          v7 preferable as a database primary key because sequential inserts reduce B-tree page
+          splits and improve index performance.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Are UUID v4 identifiers truly unique?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          In practice, yes. A UUID v4 has 122 bits of randomness, giving approximately
+          5.3 × 10<sup>36</sup> possible values. The probability of generating a duplicate even
+          across billions of IDs is astronomically small — far below the likelihood of hardware
+          failure causing data loss.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Can I use UUIDs as database primary keys?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes, and it is a common pattern. UUID v4 works well when you generate IDs on the client
+          before an insert, or when you need IDs that are hard to guess. If you are using a
+          traditional B-tree index (MySQL InnoDB, PostgreSQL), prefer UUID v7 or another
+          time-ordered format to keep inserts sequential and avoid index fragmentation.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What format does a UUID use?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          A UUID is a 128-bit value displayed as 32 lowercase hexadecimal digits grouped into five
+          sections separated by hyphens: <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code>. The
+          version number appears in the third section and the variant bits in the fourth section.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

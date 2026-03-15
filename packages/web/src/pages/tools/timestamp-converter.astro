@@ -8,4 +8,70 @@ const meta = getToolMeta('timestamp-converter')!
 
 <ToolPage meta={meta}>
   <TimestampConverterIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Enter a Unix timestamp (in seconds or milliseconds) to see the equivalent human-readable
+        date and time in UTC, your local timezone, and ISO 8601 format. Conversely, pick a date
+        and time using the date picker to get the corresponding Unix timestamp in both seconds and
+        milliseconds. The <strong>Now</strong> button fills in the current timestamp instantly.
+      </p>
+      <p>
+        This tool is invaluable when reading log files, debugging API responses that return
+        timestamps, comparing event times across different time zones, or writing database queries
+        that filter by a specific date range. It also helps when setting expiry times for JWTs or
+        cookies, where you need to calculate a Unix timestamp some number of hours or days in
+        the future.
+      </p>
+      <p>
+        Conversions are performed entirely in the browser using JavaScript's <code>Date</code>
+        object. Your system timezone is detected automatically.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the difference between a Unix timestamp in seconds and milliseconds?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          A Unix timestamp counts the number of seconds elapsed since January 1, 1970, 00:00:00
+          UTC (the Unix epoch). JavaScript's <code>Date.now()</code> returns milliseconds instead,
+          so it is 1 000 times larger. Databases like PostgreSQL and languages like Python default
+          to seconds, while JavaScript and many REST APIs use milliseconds — always check the
+          magnitude to determine which unit you are working with.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I get the current Unix timestamp in JavaScript?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Use <code>Date.now()</code> for milliseconds or <code>Math.floor(Date.now() / 1000)</code>
+          for seconds. In Node.js you can also use <code>process.hrtime()</code> for higher
+          precision, but for most logging and API timestamp purposes <code>Date.now()</code> is
+          sufficient.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the Unix epoch and why does it start in 1970?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          January 1, 1970, 00:00:00 UTC was chosen as the reference point when the Unix operating
+          system was being designed in the early 1970s. It was a convenient, recent date that fit
+          within the integer types available on the hardware of the time. The choice has persisted
+          as a de facto standard across nearly all modern computing platforms.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">When does Unix time overflow (the Year 2038 problem)?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          32-bit signed integers can only represent Unix timestamps up to 2,147,483,647 seconds,
+          which corresponds to January 19, 2038, 03:14:07 UTC. Systems still storing timestamps
+          as 32-bit signed integers will overflow on that date. Most modern systems use 64-bit
+          integers, which will not overflow for approximately 292 billion years.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

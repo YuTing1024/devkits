@@ -8,4 +8,66 @@ const meta = getToolMeta('base64')!
 
 <ToolPage meta={meta}>
   <Base64Island client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Type or paste your text into the input field, then click <strong>Encode</strong> to convert
+        it to a Base64 string, or paste an existing Base64 string and click <strong>Decode</strong>
+        to recover the original text. The tool handles standard Base64 as well as the URL-safe
+        variant that replaces <code>+</code> and <code>/</code> with <code>-</code> and <code>_</code>.
+      </p>
+      <p>
+        Typical developer use cases include encoding binary data for embedding in JSON payloads,
+        creating <code>data:</code> URIs for small assets, passing credentials in HTTP Basic
+        Authentication headers, and storing binary content in environments that only accept text
+        such as environment variables or XML documents.
+      </p>
+      <p>
+        Everything runs in your browser — no data is sent to any server. The tool also shows the
+        exact byte size of both the input and the encoded output so you can see the size overhead
+        at a glance.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Is Base64 a form of encryption?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          No. Base64 is an encoding scheme, not encryption. Anyone who has the Base64 string can
+          decode it instantly without a key. Do not use Base64 to protect sensitive data — use
+          proper encryption algorithms such as AES instead.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I encode a UTF-8 string to Base64 in JavaScript?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Use <code>btoa(unescape(encodeURIComponent(str)))</code> for older environments, or the
+          modern <code>TextEncoder</code> API: convert the string to bytes first, then encode those
+          bytes. This tool handles multi-byte UTF-8 characters automatically.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How much larger does a file get after Base64 encoding?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Base64-encoded data is approximately 33% larger than the original binary data because
+          every 3 bytes of input are represented as 4 ASCII characters. Keep this overhead in mind
+          when embedding images or other assets directly into HTML or JSON.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What is the difference between standard Base64 and URL-safe Base64?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Standard Base64 uses <code>+</code> and <code>/</code> characters which have special
+          meaning in URLs. URL-safe Base64 replaces them with <code>-</code> and <code>_</code> so
+          the encoded string can be used directly in query parameters and path segments without
+          percent-encoding.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

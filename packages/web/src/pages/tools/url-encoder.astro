@@ -8,4 +8,70 @@ const meta = getToolMeta('url-encoder')!
 
 <ToolPage meta={meta}>
   <UrlEncoderIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Paste a URL or a query parameter value into the input area, then click <strong>Encode</strong>
+        to percent-encode reserved and non-ASCII characters. Use <strong>Decode</strong> to reverse
+        the process and recover the original string from a percent-encoded value. Toggle between
+        <em>full URL</em> mode (preserves structural characters like <code>/</code> and <code>?</code>)
+        and <em>component</em> mode (encodes everything except letters, digits, and
+        <code>- _ . ~</code>) depending on your use case.
+      </p>
+      <p>
+        Common scenarios include constructing redirect URIs for OAuth flows, encoding search query
+        strings before appending them to API endpoints, sanitizing user-provided input before
+        including it in a URL, and debugging encoded URLs received from third-party services.
+      </p>
+      <p>
+        Processing is entirely local to your browser — suitable for working with authentication
+        tokens or private endpoint URLs.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">When should I use encodeURI vs encodeURIComponent?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Use <code>encodeURI</code> when encoding an entire URL — it preserves characters that
+          have structural meaning in a URL such as <code>:</code>, <code>/</code>, <code>?</code>,
+          and <code>#</code>. Use <code>encodeURIComponent</code> when encoding a single query
+          parameter value, because those structural characters must be encoded to prevent them from
+          being interpreted as URL separators.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How do I encode query parameters with special characters?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Paste only the parameter value (not the full URL) into this tool in component mode. The
+          output can then be safely appended after the <code>=</code> sign in your query string.
+          Spaces become <code>%20</code> and characters like <code>&amp;</code> become
+          <code>%26</code>, preventing them from breaking the URL structure.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What does percent-encoding mean in a URL?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Percent-encoding (also called URL encoding) replaces characters that are not allowed or
+          have reserved meaning in a URL with a <code>%</code> sign followed by two hexadecimal
+          digits representing the character's UTF-8 byte value. For example, a space is encoded as
+          <code>%20</code>.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Why does my decoded URL still show %20 instead of spaces?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Some applications use <code>+</code> as a shorthand for spaces in form-encoded data
+          (application/x-www-form-urlencoded), while standard percent-encoding uses <code>%20</code>.
+          Make sure you are decoding with the correct method — use <code>decodeURIComponent</code>
+          for percent-encoding and replace <code>+</code> with a space for form-encoded values.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

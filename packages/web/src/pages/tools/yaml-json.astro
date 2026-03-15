@@ -8,4 +8,70 @@ const meta = getToolMeta('yaml-json')!
 
 <ToolPage meta={meta}>
   <YamlJsonIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Paste YAML into the left panel and click <strong>Convert to JSON</strong> to get a
+        formatted JSON equivalent on the right, or paste JSON and click
+        <strong>Convert to YAML</strong> to go the other direction. The output is pretty-printed
+        and syntax-highlighted for easy reading. Use the copy button to place the result on
+        your clipboard instantly.
+      </p>
+      <p>
+        Common workflows include converting Kubernetes manifests or GitHub Actions workflows
+        from YAML to JSON for programmatic processing, transforming JSON API responses into
+        YAML before committing them as fixture files, and validating that a YAML configuration
+        file parses without errors before deploying it to a server or CI system.
+      </p>
+      <p>
+        Conversion runs entirely in the browser, so proprietary infrastructure configurations
+        and secrets in environment-specific YAML files are never sent to a server.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">What are the main differences between YAML and JSON?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          YAML uses indentation to define structure instead of braces and brackets, supports
+          comments with <code>#</code>, and allows multiline strings without escaping. JSON is
+          a strict subset of JavaScript syntax with no comments and is more compact. YAML is
+          generally preferred for human-edited configuration files, while JSON is preferred for
+          machine-generated data and API payloads.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Can YAML files contain comments?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes. Any text following a <code>#</code> character on a line is treated as a comment
+          and ignored by the parser. JSON does not support comments at all, so comments are lost
+          when converting YAML to JSON. This is one reason YAML is preferred for configuration
+          files maintained by humans.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Why does my YAML have unexpected types after conversion?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          YAML automatically infers types: values like <code>true</code>, <code>false</code>,
+          <code>null</code>, and bare numbers are parsed as their native types rather than strings.
+          If you need a value to remain a string, wrap it in quotes in the YAML source. For
+          example, use <code>"true"</code> instead of <code>true</code>.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Is YAML a superset of JSON?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          YAML 1.2 is a superset of JSON — any valid JSON document is also valid YAML 1.2. This
+          means you can use a YAML parser to read JSON files, though the reverse is not true:
+          YAML-specific features like comments, anchors, and multi-document streams have no JSON
+          equivalent.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>

@@ -8,4 +8,69 @@ const meta = getToolMeta('json-to-typescript')!
 
 <ToolPage meta={meta}>
   <JsonToTypescriptIsland client:load />
+
+  <section class="mt-12 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">How to Use</h2>
+    <div class="prose prose-gray dark:prose-invert max-w-none text-sm leading-relaxed space-y-3">
+      <p>
+        Paste a JSON object or array into the left panel. The tool instantly generates TypeScript
+        type definitions in the right panel. Use the options to choose between <code>interface</code>
+        and <code>type</code> syntax, set the root type name, and control whether optional
+        properties are inferred from nullable fields.
+      </p>
+      <p>
+        This is particularly useful when integrating a new REST API or third-party SDK: copy the
+        response body from your browser's Network tab, paste it here, and immediately get typed
+        interfaces to use in your TypeScript project. It also works for configuration files,
+        database query results, and any other JSON-shaped data you need to type-check.
+      </p>
+      <p>
+        Nested objects are converted to nested interfaces, arrays are typed as <code>T[]</code>,
+        and <code>null</code> values produce union types with <code>null</code>. All conversion
+        runs client-side.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-10 max-w-3xl">
+    <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-6">Frequently Asked Questions</h2>
+    <div class="space-y-6">
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Does JSON to TypeScript handle deeply nested objects and arrays?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes. The converter recursively processes nested objects, generating a separate named
+          interface for each level. Arrays of objects produce a typed array whose element type is
+          inferred from the first item in the array. Arrays of primitives produce
+          <code>string[]</code>, <code>number[]</code>, etc.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Should I use interface or type for API response shapes?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Both work. <code>interface</code> is preferred for object shapes that may be extended
+          elsewhere in your codebase, because it supports declaration merging. <code>type</code>
+          is more flexible — it can express unions, intersections, and mapped types that
+          <code>interface</code> cannot. For plain data models, either choice is fine and largely
+          a matter of team convention.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">How are null and undefined handled in the generated types?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Fields whose value is <code>null</code> in the sample JSON are typed as
+          <code>T | null</code>, where <code>T</code> is inferred from other array items or
+          treated as <code>unknown</code> when no additional information is available. Missing
+          keys compared to sibling objects are marked as optional with <code>?</code>.
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-gray-900 dark:text-gray-100 mb-2">Can I convert the output directly into a .ts file?</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+          Yes — copy the generated code and paste it into any <code>.ts</code> or
+          <code>.d.ts</code> file in your project. The output is valid TypeScript with no
+          additional imports required.
+        </p>
+      </div>
+    </div>
+  </section>
 </ToolPage>
