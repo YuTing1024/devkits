@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import UuidGeneratorIsland from '../../islands/UuidGeneratorIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('uuid-generator')!
+---
+
+<ToolPage meta={meta}>
+  <UuidGeneratorIsland client:load />
+</ToolPage>

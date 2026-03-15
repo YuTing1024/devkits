@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Header from '../components/layout/Header.astro'
+import Footer from '../components/layout/Footer.astro'
+import SEOHead from '../components/seo/SEOHead.astro'
+---
+
+<BaseLayout title="Privacy Policy — DevKits">
+  <Fragment slot="head">
+    <SEOHead
+      title="Privacy Policy — DevKits"
+      description="DevKits privacy policy. Your data never leaves your browser. No tracking, no cookies, no analytics."
+    />
+  </Fragment>
+
+  <div class="flex flex-col min-h-screen">
+    <Header />
+
+    <main class="flex-1 py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto">
+        <div class="mb-8">
+          <a href="/" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">&larr; Back to tools</a>
+        </div>
+
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">Privacy Policy</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-10">Last updated: March 2026</p>
+
+        <!-- Key callout -->
+        <div class="p-5 mb-10 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-xl">
+          <div class="flex items-start gap-3">
+            <svg class="shrink-0 mt-0.5 text-blue-600 dark:text-blue-400" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <div>
+              <p class="font-semibold text-blue-900 dark:text-blue-300 text-base">Your data never leaves your browser.</p>
+              <p class="mt-1 text-sm text-blue-800 dark:text-blue-400">
+                Every tool on DevKits processes your input locally using JavaScript running in your browser tab. No data is transmitted to any server.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="prose prose-gray dark:prose-invert max-w-none space-y-8">
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">What we collect</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              <strong>Nothing.</strong> DevKits does not collect, store, or transmit any personal data or tool input. The site has no backend server that receives your data. All computations (formatting, encoding, hashing, generating) happen entirely within your browser.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Cookies and local storage</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              We use <code class="px-1.5 py-0.5 text-sm bg-gray-100 dark:bg-gray-800 rounded font-mono">localStorage</code> solely to remember your light/dark theme preference. This data is stored on your device only and never sent anywhere.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Analytics</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              Currently, DevKits does not use any analytics or tracking services. In the future, we may consider adding privacy-respecting analytics (such as aggregate page view counts only). If we do, this policy will be updated, and we will choose a provider that does not identify individual users or collect personal data.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Third-party services</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              DevKits is a static site hosted on a CDN. Your browser will make standard HTTP requests to load the page assets. Standard server access logs (IP address, timestamp, requested path) may be retained by our hosting provider per their own privacy policy. We do not control or access these logs.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Open source</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              DevKits is open source. You can inspect the entire codebase to verify that no data is collected or transmitted. The source code is available on GitHub.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Changes to this policy</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              We reserve the right to update this privacy policy. Any changes will be reflected on this page with an updated date.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">Contact</h2>
+            <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+              Questions about this policy? Open an issue or discussion on GitHub.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

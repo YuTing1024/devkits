@@ -1,0 +1,34 @@
+---
+import type { ToolMeta } from '@devkits/core'
+
+interface Props {
+  meta?: ToolMeta
+  siteUrl?: string
+}
+
+const { meta, siteUrl = 'https://devkits.dev' } = Astro.props
+
+const schema = meta ? {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: meta.name,
+  description: meta.description,
+  url: `${siteUrl}/tools/${meta.slug}`,
+  applicationCategory: 'DeveloperApplication',
+  operatingSystem: 'Any',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  keywords: meta.keywords.join(', '),
+} : {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'DevKits',
+  description: 'Free developer tools that run entirely in your browser.',
+  url: siteUrl,
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devkits.dev/sitemap-index.xml

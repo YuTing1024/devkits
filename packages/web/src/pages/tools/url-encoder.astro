@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import UrlEncoderIsland from '../../islands/UrlEncoderIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('url-encoder')!
+---
+
+<ToolPage meta={meta}>
+  <UrlEncoderIsland client:load />
+</ToolPage>

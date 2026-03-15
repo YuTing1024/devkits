@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import Base64Island from '../../islands/Base64Island'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('base64')!
+---
+
+<ToolPage meta={meta}>
+  <Base64Island client:load />
+</ToolPage>

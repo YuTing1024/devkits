@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import HashGeneratorIsland from '../../islands/HashGeneratorIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('hash-generator')!
+---
+
+<ToolPage meta={meta}>
+  <HashGeneratorIsland client:load />
+</ToolPage>

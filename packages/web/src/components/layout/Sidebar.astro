@@ -1,0 +1,57 @@
+---
+import { toolRegistry } from '@devkits/core'
+
+interface Props {
+  currentSlug?: string
+}
+
+const { currentSlug } = Astro.props
+
+const BATCH_1_SLUGS = ['json-formatter', 'base64', 'url-encoder', 'uuid-generator', 'hash-generator']
+const batch1Tools = toolRegistry.filter(t => BATCH_1_SLUGS.includes(t.slug))
+
+// Group by category
+const grouped = batch1Tools.reduce<Record<string, typeof batch1Tools>>((acc, tool) => {
+  if (!acc[tool.category]) acc[tool.category] = []
+  acc[tool.category].push(tool)
+  return acc
+}, {})
+
+const categoryLabels: Record<string, string> = {
+  formatters: 'Formatters',
+  encoders: 'Encoders & Decoders',
+  generators: 'Generators',
+}
+
+const categoryOrder = ['formatters', 'encoders', 'generators']
+---
+
+<nav class="w-56 shrink-0 hidden lg:block">
+  <div class="sticky top-[3.5rem] pt-6 pb-8 overflow-y-auto max-h-[calc(100vh-3.5rem)]">
+    <div class="space-y-6">
+      {categoryOrder.filter(cat => grouped[cat]).map(cat => (
+        <div>
+          <h3 class="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            {categoryLabels[cat]}
+          </h3>
+          <ul class="space-y-0.5">
+            {grouped[cat].map(tool => (
+              <li>
+                <a
+                  href={`/tools/${tool.slug}`}
+                  class={`block px-3 py-2 text-sm rounded-lg transition-colors ${
+                    tool.slug === currentSlug
+                      ? 'bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'
+                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                  }`}
+                >
+                  {tool.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</nav>

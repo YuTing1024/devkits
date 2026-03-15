@@ -1,0 +1,48 @@
+---
+import type { ToolMeta } from '@devkits/core'
+import BaseLayout from './BaseLayout.astro'
+import Header from '../components/layout/Header.astro'
+import Footer from '../components/layout/Footer.astro'
+import Sidebar from '../components/layout/Sidebar.astro'
+import SEOHead from '../components/seo/SEOHead.astro'
+import JsonLd from '../components/seo/JsonLd.astro'
+
+interface Props {
+  meta: ToolMeta
+}
+
+const { meta } = Astro.props
+---
+
+<BaseLayout title={`${meta.name} — DevKits`} description={meta.description}>
+  <Fragment slot="head">
+    <SEOHead title={`${meta.name} — DevKits`} meta={meta} />
+    <JsonLd meta={meta} />
+  </Fragment>
+
+  <div class="flex flex-col min-h-screen">
+    <Header />
+
+    <div class="flex-1 max-w-screen-xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-8 py-8">
+        <Sidebar currentSlug={meta.slug} />
+
+        <main class="flex-1 min-w-0">
+          <!-- Mobile: tool name breadcrumb -->
+          <div class="lg:hidden mb-4">
+            <a href="/" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">&larr; All tools</a>
+          </div>
+
+          <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-gray-100">{meta.name}</h1>
+            <p class="mt-1 text-gray-600 dark:text-gray-400">{meta.description}</p>
+          </div>
+
+          <slot />
+        </main>
+      </div>
+    </div>
+
+    <Footer />
+  </div>
+</BaseLayout>
