@@ -1,0 +1,20 @@
+{
+  "name": "devkits",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter @devkits/web dev",
+    "build": "pnpm --filter @devkits/core build && pnpm --filter @devkits/web build",
+    "test": "pnpm --filter @devkits/core test",
+    "preview": "pnpm --filter @devkits/web preview"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ],
+    "onlyBuiltDependenciesFile": ""
+  }
+}
