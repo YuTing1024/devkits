@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import CodeMirror from '@uiw/react-codemirror'
 import { json } from '@codemirror/lang-json'
+import { yaml } from '@codemirror/lang-yaml'
 import { EditorView } from '@codemirror/view'
 
 interface CodeEditorProps {
   value: string
   onChange?: (value: string) => void
-  language?: 'json' | 'text'
+  language?: 'json' | 'yaml' | 'text'
   readOnly?: boolean
   placeholder?: string
   minHeight?: string
@@ -32,7 +33,7 @@ export default function CodeEditor({
 
   const extensions = [
     EditorView.lineWrapping,
-    ...(language === 'json' ? [json()] : []),
+    ...(language === 'json' ? [json()] : language === 'yaml' ? [yaml()] : []),
   ]
 
   return (

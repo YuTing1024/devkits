@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import TimestampConverterIsland from '../../islands/TimestampConverterIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('timestamp-converter')!
+---
+
+<ToolPage meta={meta}>
+  <TimestampConverterIsland client:load />
+</ToolPage>

@@ -7,8 +7,11 @@ interface Props {
 
 const { currentSlug } = Astro.props
 
-const BATCH_1_SLUGS = ['json-formatter', 'base64', 'url-encoder', 'uuid-generator', 'hash-generator']
-const batch1Tools = toolRegistry.filter(t => BATCH_1_SLUGS.includes(t.slug))
+const VISIBLE_SLUGS = [
+  'json-formatter', 'base64', 'url-encoder', 'uuid-generator', 'hash-generator',
+  'json-to-typescript', 'timestamp-converter', 'cron-generator', 'yaml-json', 'image-to-base64',
+]
+const batch1Tools = toolRegistry.filter(t => VISIBLE_SLUGS.includes(t.slug))
 
 // Group by category
 const grouped = batch1Tools.reduce<Record<string, typeof batch1Tools>>((acc, tool) => {

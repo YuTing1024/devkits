@@ -11,6 +11,7 @@
     "@astrojs/react": "^5.0.0",
     "@astrojs/sitemap": "^3.7.0",
     "@codemirror/lang-json": "^6.0.0",
+    "@codemirror/lang-yaml": "^6.1.2",
     "@codemirror/view": "^6.40.0",
     "@devkits/core": "workspace:*",
     "@uiw/react-codemirror": "^4.25.0",

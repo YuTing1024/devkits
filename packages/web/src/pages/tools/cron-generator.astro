@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import CronGeneratorIsland from '../../islands/CronGeneratorIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('cron-generator')!
+---
+
+<ToolPage meta={meta}>
+  <CronGeneratorIsland client:load />
+</ToolPage>

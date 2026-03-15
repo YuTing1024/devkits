@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import ImageToBase64Island from '../../islands/ImageToBase64Island'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('image-to-base64')!
+---
+
+<ToolPage meta={meta}>
+  <ImageToBase64Island client:load />
+</ToolPage>

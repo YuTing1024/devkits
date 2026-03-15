@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import JsonToTypescriptIsland from '../../islands/JsonToTypescriptIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('json-to-typescript')!
+---
+
+<ToolPage meta={meta}>
+  <JsonToTypescriptIsland client:load />
+</ToolPage>

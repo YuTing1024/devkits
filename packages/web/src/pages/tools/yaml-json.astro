@@ -1,0 +1,11 @@
+---
+import ToolPage from '../../layouts/ToolPage.astro'
+import YamlJsonIsland from '../../islands/YamlJsonIsland'
+import { getToolMeta } from '@devkits/core'
+
+const meta = getToolMeta('yaml-json')!
+---
+
+<ToolPage meta={meta}>
+  <YamlJsonIsland client:load />
+</ToolPage>
